@@ -1,0 +1,369 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --nav-height: 76px;
+
+  /* Z-Index Hierarchy Token System */
+  --z-background: 0;
+  --z-content: 10;
+  --z-overlay: 20;
+  --z-cinematic-typography: 30;
+  --z-navigation: 40;
+  --z-floating-controls: 50;
+  --z-dialog: 60;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ensure vertical scrolling is never locked permanently on root */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Isolate Fullscreen Display Screen & Kiosk Mode */
+body:has(.display-screen) header,
+body:has(.display-screen) footer,
+body:has(.display-screen) > a[href="#main"] {
+  display: none !important;
+}
+
+/* ---------- Mobile safe-area & viewport helpers ---------- */
+.pt-safe {
+  padding-top: max(1rem, env(safe-area-inset-top, 16px));
+}
+.pb-safe {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom, 16px));
+}
+.h-viewport {
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
+  height: 100dvh;
+}
+
+::selection {
+  background: #b58938;
+  color: #171512;
+}
+
+/* ---------- Focus visibility ---------- */
+:focus-visible {
+  outline: 2px solid #c79a45;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------- Custom scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #171512;
+}
+::-webkit-scrollbar-thumb {
+  background: #423c36;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7a6444;
+}
+
+/* ---------- Utilities ---------- */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass {
+    background: rgba(23, 21, 18, 0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(199, 154, 69, 0.18);
+  }
+
+  .glass-light {
+    background: rgba(248, 245, 238, 0.06);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(248, 245, 238, 0.12);
+  }
+
+  .text-outline {
+    -webkit-text-stroke: 1px rgba(199, 154, 69, 0.35);
+    color: transparent;
+  }
+
+  .vertical-text {
+    writing-mode: vertical-rl;
+  }
+
+  /* Animated underline for nav links */
+  .link-underline {
+    position: relative;
+  }
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    height: 1px;
+    width: 100%;
+    background: #c79a45;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-underline:hover::after,
+  .link-underline[aria-current="page"]::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Typography Clamp System */
+  .display-xl {
+    font-family: var(--font-serif);
+    font-size: clamp(2.75rem, 8.5vw, 8.5rem);
+    line-height: 0.92;
+    letter-spacing: -0.015em;
+    font-weight: 300;
+  }
+
+  .display-lg {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 6.5vw, 5.5rem);
+    line-height: 0.96;
+    letter-spacing: -0.01em;
+    font-weight: 300;
+  }
+
+  .display-md {
+    font-family: var(--font-serif);
+    font-size: clamp(1.75rem, 4vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+    font-weight: 300;
+  }
+
+  .body-large {
+    font-size: clamp(1rem, 1.35vw, 1.25rem);
+    line-height: 1.65;
+  }
+
+  .eyebrow {
+    font-size: clamp(0.7rem, 0.85vw, 0.8rem);
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .metadata {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: clamp(0.7rem, 0.8vw, 0.75rem);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+
+  /* Word Break and Wrapping Protection */
+  .word-keep {
+    word-break: keep-all;
+    overflow-wrap: normal;
+    hyphens: none;
+  }
+
+  /* Standard Cinematic Image Display */
+  .cinematic-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+
+  /* Grain overlay for cinematic texture */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.07;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* ---------- Keyframes referenced by arbitrary animate-[...] utilities ---------- */
+@keyframes scanLine {
+  0% {
+    top: 6%;
+    opacity: 0.3;
+  }
+  15% {
+    opacity: 1;
+  }
+  50% {
+    top: 94%;
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: 6%;
+    opacity: 0.3;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ---------- Leaflet overrides ---------- */
+.leaflet-container {
+  background: #171512;
+  font-family: var(--font-sans);
+}
+
+.leaflet-popup-content-wrapper {
+  background: rgba(23, 21, 18, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #f8f5ee;
+  border-radius: 14px;
+  border: 1px solid rgba(199, 154, 69, 0.35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.leaflet-popup-tip {
+  background: rgba(23, 21, 18, 0.95);
+  border: 1px solid rgba(199, 154, 69, 0.35);
+}
+
+.leaflet-popup-content {
+  margin: 14px 16px;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  color: #b0a79b;
+  padding: 6px;
+}
+
+.leaflet-container a.leaflet-popup-close-button:hover {
+  color: #c79a45;
+}
+
+.leaflet-bar a,
+.leaflet-control-attribution {
+  background: rgba(23, 21, 18, 0.88) !important;
+  color: #b0a79b !important;
+  border-color: rgba(199, 154, 69, 0.2) !important;
+}
+
+.leaflet-bar a:hover {
+  background: #322e2a !important;
+  color: #f8f5ee !important;
+}
+
+.leaflet-control-attribution a {
+  color: #c79a45 !important;
+}
+
+/* ---------- Hero Carousel Loop Bar ---------- */
+@keyframes loop-progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-loop-progress {
+  animation: loop-progress 5.5s linear forwards;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Visitor Information Center Edge-to-Edge Isolation ---------- */
+body:has(.visitor-center-screen) header:not(.visitor-center-screen header),
+body:has(.visitor-center-screen) footer:not(.visitor-center-screen footer),
+body:has([data-visitor-center="true"]) header:not([data-visitor-center="true"] header),
+body:has([data-visitor-center="true"]) footer:not([data-visitor-center="true"] footer) {
+  display: none !important;
+}
+
+/* ---------- Dark Mode Leaflet Map Tiles & Custom Heritage Popup ---------- */
+.dark-mode-tiles {
+  filter: invert(100%) hue-rotate(180deg) brightness(88%) contrast(92%);
+}
+
+.custom-heritage-popup .leaflet-popup-content-wrapper {
+  background: #171512 !important;
+  color: #f8f5ee !important;
+  border: 1px solid rgba(199, 154, 69, 0.45) !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.8), 0 8px 10px -6px rgba(0, 0, 0, 0.8) !important;
+  padding: 4px !important;
+}
+
+.custom-heritage-popup .leaflet-popup-content {
+  margin: 12px 14px !important;
+  line-height: 1.5 !important;
+}
+
+.custom-heritage-popup .leaflet-popup-tip {
+  background: #171512 !important;
+  border: 1px solid rgba(199, 154, 69, 0.45) !important;
+  border-top: none !important;
+  border-left: none !important;
+}
+
+.custom-heritage-popup a.leaflet-popup-close-button {
+  color: #c79a45 !important;
+  padding: 8px 10px 0 0 !important;
+  font-size: 16px !important;
+}
+
+.custom-heritage-popup a.leaflet-popup-close-button:hover {
+  color: #f8f5ee !important;
+}

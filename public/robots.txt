@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bagalkot-heritage-ai.example.com/sitemap.xml

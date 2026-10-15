@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Placeholder domain — replace bagalkot-heritage-ai.example.com with the live host on deploy. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://bagalkot-heritage-ai.example.com/</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/explore</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/destinations</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/destinations/badami-cave-temples</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/destinations/bhutanatha-temples</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/destinations/pattadakal-group-of-monuments</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/destinations/virupaksha-temple-pattadakal</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/destinations/mallikarjuna-temple-pattadakal</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/destinations/aihole</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/destinations/durga-temple-aihole</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/destinations/lad-khan-temple</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/destinations/meguti-jain-temple</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/destinations/banashankari-temple</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/destinations/mahakuta-temples</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/destinations/kudalasangama</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/destinations/almatti-dam</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/heritage</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/scanner</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/guide</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/planner</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/map</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/stories</loc></url>
+  <url><loc>https://bagalkot-heritage-ai.example.com/events</loc></url>
+</urlset>
