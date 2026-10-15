@@ -1,0 +1,5 @@
+[build.environment]
+  # The Google Maps JavaScript SDK runs in the browser, so its key is public by
+  # design (exposed via NEXT_PUBLIC_GOOGLE_MAPS_API_KEY). Protect it with HTTP
+  # referrer restrictions in Google Cloud Console instead of secrets scanning.
+  SECRETS_SCAN_OMIT_KEYS = "GOOGLE_MAPS_API_KEY,NEXT_PUBLIC_GOOGLE_MAPS_API_KEY"
